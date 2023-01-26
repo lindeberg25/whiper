@@ -6,8 +6,6 @@ ENV POETRY_VERSION=1.2.0
 ENV POETRY_VENV=/app/.venv
 
 RUN export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -qq update \
-    && apt-get -qq install --no-install-recommends \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
