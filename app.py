@@ -367,11 +367,11 @@ def create_ui(input_audio_max_duration, share=False, server_name: str = None, se
     ui.set_parallel_devices(vad_parallel_devices)
     ui.set_auto_parallel(auto_parallel)
 
-    ui_description = "Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse " 
-    ui_description += " audio and is also a multi-task model that can perform multilingual speech recognition "
-    ui_description += " as well as speech translation and language identification. "
+    ui_description = "Transcrição de áudio em texto (Teste) " 
+    #ui_description += " audio and is also a multi-task model that can perform multilingual speech recognition "
+    #ui_description += " as well as speech translation and language identification. "
 
-    ui_description += "\n\n\n\nFor longer audio files (>10 minutes) not in English, it is recommended that you select Silero VAD (Voice Activity Detector) in the VAD option."
+    #ui_description += "\n\n\n\nFor longer audio files (>10 minutes) not in English, it is recommended that you select Silero VAD (Voice Activity Detector) in the VAD option."
 
     if input_audio_max_duration > 0:
         ui_description += "\n\n" + "Max audio file length: " + str(input_audio_max_duration) + " s"
@@ -383,13 +383,13 @@ def create_ui(input_audio_max_duration, share=False, server_name: str = None, se
         gr.Dropdown(choices=sorted(LANGUAGES), label="Language"),
         gr.Text(label="URL (YouTube, etc.)"),
         gr.File(label="Upload Files", file_count="multiple"),
-        gr.Audio(source="microphone", type="filepath", label="Microphone Input"),
+        #gr.Audio(source="microphone", type="filepath", label="Microphone Input"),
         gr.Dropdown(choices=["transcribe", "translate"], label="Task"),
-        gr.Dropdown(choices=["none", "silero-vad", "silero-vad-skip-gaps", "silero-vad-expand-into-gaps", "periodic-vad"], value=default_vad, label="VAD"),
-        gr.Number(label="VAD - Merge Window (s)", precision=0, value=5),
-        gr.Number(label="VAD - Max Merge Size (s)", precision=0, value=30),
-        gr.Number(label="VAD - Padding (s)", precision=None, value=1),
-        gr.Number(label="VAD - Prompt Window (s)", precision=None, value=3)
+        #gr.Dropdown(choices=["none", "silero-vad", "silero-vad-skip-gaps", "silero-vad-expand-into-gaps", "periodic-vad"], value=default_vad, label="VAD"),
+        #gr.Number(label="VAD - Merge Window (s)", precision=0, value=5),
+        #gr.Number(label="VAD - Max Merge Size (s)", precision=0, value=30),
+        #gr.Number(label="VAD - Padding (s)", precision=None, value=1),
+        #gr.Number(label="VAD - Prompt Window (s)", precision=None, value=3)
     ]
 
     simple_transcribe = gr.Interface(fn=ui.transcribe_webui_simple, description=ui_description, article=ui_article, inputs=simple_inputs(), outputs=[
@@ -421,7 +421,7 @@ def create_ui(input_audio_max_duration, share=False, server_name: str = None, se
         gr.Text(label="Segments")
     ])
 
-    demo = gr.TabbedInterface([simple_transcribe, full_transcribe], tab_names=["Simple", "Full"])
+    demo = gr.TabbedInterface([simple_transcribe], tab_names=["Whisper"])
 
     demo.launch(share=share, server_name=server_name, server_port=server_port)
     
