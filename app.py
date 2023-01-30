@@ -383,13 +383,13 @@ def create_ui(input_audio_max_duration, share=False, server_name: str = None, se
         gr.Dropdown(choices=sorted(LANGUAGES), label="Language"),
         gr.Text(label="URL (YouTube, etc.)"),
         gr.File(label="Upload Files", file_count="multiple"),
-        #gr.Audio(source="microphone", type="filepath", label="Microphone Input"),
+        gr.Audio(source="microphone", type="filepath", label="Microphone Input"),
         gr.Dropdown(choices=["transcribe", "translate"], label="Task"),
-        #gr.Dropdown(choices=["none", "silero-vad", "silero-vad-skip-gaps", "silero-vad-expand-into-gaps", "periodic-vad"], value=default_vad, label="VAD"),
-        #gr.Number(label="VAD - Merge Window (s)", precision=0, value=5),
-        #gr.Number(label="VAD - Max Merge Size (s)", precision=0, value=30),
-        #gr.Number(label="VAD - Padding (s)", precision=None, value=1),
-        #gr.Number(label="VAD - Prompt Window (s)", precision=None, value=3)
+        gr.Dropdown(choices=["none", "silero-vad", "silero-vad-skip-gaps", "silero-vad-expand-into-gaps", "periodic-vad"], value=default_vad, label="VAD"),
+        gr.Number(label="VAD - Merge Window (s)", precision=0, value=5),
+        gr.Number(label="VAD - Max Merge Size (s)", precision=0, value=30),
+        gr.Number(label="VAD - Padding (s)", precision=None, value=1),
+        gr.Number(label="VAD - Prompt Window (s)", precision=None, value=3)
     ]
 
     simple_transcribe = gr.Interface(fn=ui.transcribe_webui_simple, description=ui_description, article=ui_article, inputs=simple_inputs(), outputs=[
