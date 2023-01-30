@@ -1,4 +1,7 @@
 FROM huggingface/transformers-pytorch-gpu
+
+USER root
+
 EXPOSE 7860
 
 ADD . /opt/whisper-webui/
@@ -17,4 +20,7 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /opt/whisper-webui/
 ENTRYPOINT ["python3"]
+
+USER 185 
+
 CMD ["app.py", "--input_audio_max_duration", "-1", "--server_name", "0.0.0.0", "--auto_parallel", "True"]
