@@ -21,6 +21,6 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /opt/whisper-webui/
 ENTRYPOINT ["python3"]
 
-USER 185 
+USER 1001 
 
 CMD ["app.py", "--input_audio_max_duration", "-1", "--server_name", "0.0.0.0", "--auto_parallel", "True"]
