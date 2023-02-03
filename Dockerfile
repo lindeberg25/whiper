@@ -4,6 +4,8 @@ USER root
 
 EXPOSE 7860
 
+WORKDIR /opt/whisper-webui/
+
 ADD . /opt/whisper-webui/
 
 # Latest version of transformers-pytorch-gpu seems to lack tk. 
@@ -16,11 +18,11 @@ RUN  python3 -m pip install --upgrade pip &&\
 # You can also bind this directory in the container to somewhere on the host.
 
 # To be able to see logs in real time
-ENV PYTHONUNBUFFERED=1
+#ENV PYTHONUNBUFFERED=1
 
-WORKDIR /opt/whisper-webui/
+
 ENTRYPOINT ["python3"]
 
-USER 1001 
+#USER 1001 
 
 CMD ["app.py", "--input_audio_max_duration", "-1", "--server_name", "0.0.0.0", "--auto_parallel", "True"]
